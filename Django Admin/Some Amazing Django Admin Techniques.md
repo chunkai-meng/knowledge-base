@@ -2,9 +2,11 @@
 
 1. To show a beautiful percentage chart in *List Display* & *Change Page*
 
-![List Page-c583](media/15527251455812/15527256742115.jpg)
+![Change List](Some Amazing Django Admin Techniques.assets/eDoUk.jpg)
 
-![Change Page-c1493](media/15527251455812/15527258080911.jpg)
+
+
+![change](Some Amazing Django Admin Techniques.assets/image-20190504190600785.png)
 
 Model
 
