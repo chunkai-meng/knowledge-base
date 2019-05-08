@@ -1,4 +1,4 @@
-# Three way to format datetime object in Python
+# Format datetime object in Python
 
 1. Dates have a default representation, but you may want to print them in a specific format. In that case, you can get a custom string representation using the `strftime()` method.
 
