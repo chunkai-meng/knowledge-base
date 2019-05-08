@@ -6,5 +6,5 @@
 
 ### QuerySet
 
-- [查询集总结](./Django/QuerySet 查询集总结.md)
+- [查询集总结](Django/QuerySet%20查询集总结.md)
 
