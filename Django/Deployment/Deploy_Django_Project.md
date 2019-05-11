@@ -82,7 +82,7 @@ services:
 pipenv install django-pyodbc-azure
 ```
 
-```python
+```dockerfile
 # Dockerfile
 FROM python:3.7
 LABEL maintainer CK 
@@ -111,7 +111,7 @@ RUN pipenv install --deploy --system --ignore-pipfile
 
 1. `mkdir nginx`
 2. `cd nginx; mkdir conf.d`
-```python
+```nginx
 # ./nginx/conf.d/my_nginx.conf
 
 # the upstream component nginx needs to connect to
