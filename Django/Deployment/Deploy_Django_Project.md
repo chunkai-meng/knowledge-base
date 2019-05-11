@@ -5,7 +5,7 @@
 
 
 
-![image-20190511112347722](https://img.shields.io/static/v1.svg?logo=Python&label=Python&message=3.7&color=informational)![image-20190511112347722](https://img.shields.io/static/v1.svg?logo=Django&label=Django&message=2.1.7&color=brightgreen)
+![image-20190511112347722](https://img.shields.io/static/v1.svg?logo=Python&label=Python&message=3.7&color=informational)  ![image-20190511112347722](https://img.shields.io/static/v1.svg?logo=Django&label=Django&message=2.1.7&color=brightgreen)
 
 
 
