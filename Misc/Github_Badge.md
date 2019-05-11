@@ -2,6 +2,16 @@
 
 > [Github Source](https://github.com/Naereen/badges)
 
+
+
+Frequently used:
+
+
+
+![image-20190511112347722](https://img.shields.io/static/v1.svg?logo=Python&label=Python&message=3.7&color=informational)  ![image-20190511112347722](https://img.shields.io/static/v1.svg?logo=Django&label=Django&message=2.1.7&color=brightgreen) ![made-with-python](https://img.shields.io/badge/Make%20with-Docker%20Compose-077CBC.svg)![made-with-python](https://img.shields.io/static/v1.svg?logo=Nginx&label=Docker&message=Official Image&color=#099CEC) ![made-with-python](https://img.shields.io/static/v1.svg?logo=PostgreSQL&label=Docker&message=Official Image&color=#099CEC)
+
+
+
 # List of Badges, in Markdown
 A list of badges, with their Markdown code, that can be included in a `README.md` file for a GitHub or Bitbucket project.
 
