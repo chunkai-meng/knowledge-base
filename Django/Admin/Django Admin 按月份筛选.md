@@ -11,7 +11,7 @@
 Django Admin Site `date_hierarchy` 会从年开始根据每一次筛选逐级细分到每天
 比如点了 April 以后会重新细分到4月的有记录的日子
 
-![Alt](images.assets/1.jpg)
+![Alt](Django Admin 按月份筛选.assets/1.jpg)
 
 ## 解决办法：
 ```py
