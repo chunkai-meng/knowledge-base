@@ -8,7 +8,7 @@
 ## Create Local Dev environment
 for debugging on my Mac
 
-[macOS preparation GeoDjango](https://docs.djangoproject.com/en/2.1/ref/contrib/gis/install/#macos)
+
 
 ```
 $ brew install postgresql
@@ -266,5 +266,9 @@ from django.contrib.gis.geos import GEOSGeometry, LineString, Point
 
 
 ### References
+
+
+
+[macOS preparation GeoDjango](https://docs.djangoproject.com/en/2.1/ref/contrib/gis/install/#macos)
 
 [Make a Location-Based Web App With Django and GeoDjango](https://realpython.com/location-based-app-with-geodjango-tutorial/)
