@@ -4,9 +4,7 @@ Problem Desc:
 Django works as an API backend, frontend use VUE.
 The request was blocked by CORS policy because the header doesn't involve 'Access-Control-Allow-Origin'.
 
-![](./Django CORS Problem.assets/15554720745855.png)
-
-
+![image-20190903223919631](media/image-20190903223919631.png)
 
 
 1. install [django-cors-headers](https://pypi.org/project/django-cors-headers/)

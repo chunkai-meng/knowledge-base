@@ -12,7 +12,8 @@
 ## 筛选条件
 `filter()` 函数接受多种 *关键字参数* (用逗号隔开) 作为筛选依据
 参数名常用举例：
-```py
+
+```python
 fieldname__lte=数    # ≤
 fieldname__gte=数    # ≥
 fieldname__lt=数     # <
@@ -26,7 +27,11 @@ fieldname__startswith='why'
 ```
 
 ```python
+# 复合条件判断
 Post.objects.filter(publish__year__gte=2018, author__username='admin')
+
+# 区间条件判断
+Sample.objects.filter(date__range=["2011-01-01", "2011-01-31"])
 ```
 
 ‘exclude()’

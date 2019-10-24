@@ -1,0 +1,84 @@
+# C++ Notebooks
+1. 方法重载：同一个类中定义同名参数不同的方法，用来增加信贷功能
+2. 属性／字段：字段是类中的数据，属性包括了对字段的操作
+3. 继承：子类拥有父类非 private 的属性和方法
+4. 多态：（override）:**让一个对象在不同情况下执行不同的操作**
+    * 子类自动继承父类的方法，这里子类可以让父类拥有子类的方法
+    * 在父类中声明虚拟成员virtual，子类中 override 该方法。            
+    * 声明一个父类变量，创建一个子类赋值给父类，完成接替。
+5. 重构：就是重新构造代码，优化代码 **open-close principle**
+6. 抽象类：
+    * 不能实例化
+    * 必须被子类重写
+    * 如果子类中有抽象方法则类必须定义为抽象类
+7. 接口：interface
+    * 抽象类可以包括一些成员的实现，但接口不包括：
+    * 抽象类是类的抽象，接口是行为的抽象
+    * 如果行为跨越不同的对象，可以使用接口
+8. 集合
+
+指针引用：int name(int arg1, int & arg2)
+arg2将作为实参的指针，允许函数将数据写入实参（外部变量）
+“Inline 编译器通常将该关键字视为请求，请求将函数DoubleNum的内容直接放到调用它的地方（第16行），以提高代码的执行速度。
+\* 声明指针
+& 变量名，获取变量地址
+` cout<<hexx<<pointer<<endl;
+cout<<dec<<*pointer<<endl;
+“*(pNumber + Index)访问的是第 Index + 1个整数”
+Int MyNumber[5] ;
+Int * pNumber = MyNumber;
+pNumber = &MyNumber[0]
+MyNumber[1] = *(pNumber + 1)
+`
+## 大话设计模式
+### UML
+* 继承关系：空心箭头+实线
+* 接口实现：空心箭头+虚线
+* 关联关系：是新箭头+实线 （当一个需要了解另一个类）
+* 聚合关系：空心菱形+实线箭头（Aggregation：弱拥有关系）
+* 组合关系：是心灵性+实线箭头相同的生命周期强拥有关
+
+#### 简单工厂模式：
+*  工厂类根据用户选项创建（返回）不同的对象（多态）
+*  但这里工厂只是返回对象，选择过程其实是在客户端完成的
+
+#### Strategy model
+**封装变化点是重要的思维方式**
+* 将工厂转变为 context 对象，选择是在 context 完成的，the difference is that context class contains all the optional algorithms class.
+ * The strategy model is a method to define all the algorithms doing the same job in different ways.
+#### 单一职责原则
+* Regarding to a class, there should be only one reason for its changing.
+#### Open-Close principle
+* Open for extension
+* Close for modification
+
+#### 里氏代换原则
+* 子类必须能够替换掉他们的父类
+
+#### 倒转原则
+* 抽象不应该依赖细节，细节应该依赖抽象
+* 针对抽象编程而不是针对细节编程
+#### 装饰模式
+
+#### 克隆
+* 真是个好东西啊，可以完全复制对象（不是类），将其的字段都复制过来，对于大部分内容都相同的类就不用实例化那么多遍了。构造函数分配空间，初始化值，加上后续修改过的字段，都不用重新做一遍。
+* 浅表复制不复制引用的对象，只复制引用。
+* 深复制：重写clone方法，使其实例化一个新的对象
+#### 模版
+定义一个操作中的算法和框架，将一些不周延迟到子类中
+
+#### 迪米特法则LoD
+如果两个类不必直接通信，那么两个类就不应该发生直接相互作用，可以通过第三方调用
+修电脑找IT部门而不是找具体那个工程师
+#### 外观模式
+
+#### builder model
+
+
+
+
+
+
+
+
+

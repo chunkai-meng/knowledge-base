@@ -1,0 +1,72 @@
+# XML Tutorial
+
+XML: eXtensible Markup Language.
+XML Schema: i.e. XSD, defines the data contained in XML documents
+XSL: (eXtensible Stylesheet Language) and XSLT (XSL transformation)  to present XML in a different format "--"" for example, HTML.
+XPath:   :)
+
+Element: starting tag and ending tag and everything in between.
+Attribute: a name-value pair inside the starting tag of an element
+Then XML can self-describing data.
+Parser: a piece of code that attempts to read a document and interpret its contents.
+
+An XML must be contained in a single element
+Follow the XML syntax rules and the rules defined in their DTD or Schema
+Empty elements: 
+`<br />, <img>, <img src="../img/c.gif" />`
+
+*Attribute*: 
+* must have value within quotation marks
+* single / double quotes both OK
+* name="Dog's car" 
+* Or use &quot; for a double quote and &apos; for a single quote.
+
+## XML document rules
+* *Declarations must be the first thing if there is one*
+Standalone="yes" if the XML document does not reference any other files.
+* Comments
+* Processing instructions
+* Entities
+* Namespaces: defining a namespace of a particular element means that all of its child elements belong to the same namespace.
+*
+
+## Defining document content
+Define the element
+1. DTD: Document Type Definition.  
+	What element, appear order how nest
+2. XML Schema: can define all document structure in DTD
+
+### Symbols in DTDs
+? Optional 
+"+" at least once
+"*" appear any number of times
+"|" or (either one)
+
+### Defining attributes
+1. What attribute, default values, list all valid values for a given attribute.
+
+### XML Schema
+1. use XML syntax
+2. support datatypes
+3. 
+
+
+
+# XSLT
+## XSL elements
++ template: <xsl:template> 元素定义了一个模板。而 match="/" 属性则把此模板与 XML 源文档的根相联系。
+    - It actully defines the current node(location). Like the ~ in linux file system.
++ select 属性的值是一个 XPath 表达式。此表达式的工作方式类似于定位某个文件系统，在其中正斜杠可选择子目录。
+    - Similar to SQL select
+    - select statement can have more than one outputs. so we can use "for-each" to traverse all the possible value.
++ 通过在 <xsl:for-each> 元素中添加一个选择属性的判别式，我们也可以过滤从 XML 文件输出的结果。拟合你哈
++ involve the 'sort select="artist"' in the for-each element.
+    <xsl:for-each select="catalog/cd">
+    <xsl:sort select="artist"/>
+    <tr>
+	<td>\<xsl:value-of select="title"/></td>
+	<td>\<xsl:value-of select="artist"/></td>
+    </tr>
+    </xsl:for-each>
+如需添加有条件的测试，请在 XSL 文件中的 <xsl:for-each> 元素内部添加 <xsl:if> 元素：
+

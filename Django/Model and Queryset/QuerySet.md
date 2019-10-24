@@ -1,9 +1,9 @@
-# [TOC]
+[TOC]
 
+# 为 QuerySet 增加字段
 
-
-## 为 QuerySet 增加字段
 ### 增加“合计”
+
 ```py
 # count same field values in a query
 from django.db.models import Count
@@ -15,6 +15,7 @@ MyModel.objects.values(fieldname)
 ```
 
 ### 增加一个多种判断的结构
+
 [Conditional Expressions](https://docs.djangoproject.com/en/2.1/ref/models/conditional-expressions/)
 
 ```python
@@ -38,5 +39,3 @@ my_favorites = self.get_queryset().annotate(
     num_comment=Count('comment', filter=Q(comment__enabled=True))
 ).filter(my_favorite__in=user_id)
 ```
-
-#Develop/Django/QuerySet 
