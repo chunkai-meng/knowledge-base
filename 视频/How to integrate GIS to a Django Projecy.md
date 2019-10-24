@@ -24,6 +24,12 @@ $ brew install libgeoip
 ### Step2
 Setting up a Spatial Database With PostgreSQL and PostGIS
 
+Generate random password (Optional)
+
+```shell
+date |md5 | head -c12; echo
+```
+
 ```shell
 docker run --name=postgis -d -e POSTGRES_USER=user001 -e POSTGRES_PASS=123456789 -e POSTGRES_DBNAME=gis -p 5432:5432 kartoza/postgis:11.0-2.5
 ```
@@ -45,7 +51,6 @@ DATABASES = {
 }
 ```
 
-
 ```python
 INSTALLED_APPS = [
     # [...]
@@ -56,8 +61,6 @@ INSTALLED_APPS = [
 ### Step4
 
 应用，建一个Event App，然后按地址排序
-
-
 
 **Model**
 
@@ -93,8 +96,6 @@ class EventAdmin(OSMGeoAdmin):
     list_display = ('id', 'name', 'description', 'location', 'address')
 
 ```
-
-
 
 ```shell
 $ python manage.py makemigrations
