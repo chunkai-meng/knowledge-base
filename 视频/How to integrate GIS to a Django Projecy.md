@@ -1,8 +1,13 @@
 # How to integrate GIS to a Django Projecy
 
-## 时间轴
+**时间轴**
 
-### Prerequirement
+- 介绍最终效果
+一张图看到我们可以添加地理位置字段，并且在admin site 管理
+还可以根据与给定位置之间的距离长短排序，这也是配置GeoDjango的主要用途，后面会详细介绍。
+
+**Prerequirement**
+
 1. A MacOS Python3+
 2. Python Virtual Environment
 2. A Django Projec
