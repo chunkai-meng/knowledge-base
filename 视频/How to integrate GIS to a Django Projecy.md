@@ -3,21 +3,24 @@
 **时间轴**
 
 - 介绍最终效果
+
 一张图看到我们可以添加地理位置字段，并且在admin site 管理
+
 还可以根据与给定位置之间的距离长短排序，这也是配置GeoDjango的主要用途，后面会详细介绍。
 
-**Prerequirement**
+- Prerequirement
 
 1. A MacOS Python3+
 2. Python Virtual Environment
 2. A Django Projec
 
-### What we need to do
+- What we need to do
+
 1. Installing GeoDjango Dependencies
 2. Setting up a Spatial Database With PostgreSQL and PostGIS
 3. Setting up Your Project
 
-### Step1
+- Step1
 1. Installing GeoDjango Dependencies
 
 ```shell
@@ -26,7 +29,7 @@ $ brew install gdal
 $ brew install libgeoip
 ```
 
-### Step2
+- Step2
 Setting up a Spatial Database With PostgreSQL and PostGIS
 
 Generate random password (Optional)
@@ -39,7 +42,7 @@ date |md5 | head -c12; echo
 docker run --name=postgis -d -e POSTGRES_USER=user001 -e POSTGRES_PASS=123456789 -e POSTGRES_DBNAME=gis -p 5432:5432 kartoza/postgis:11.0-2.5
 ```
 
-### Step3
+- Step3
 Change Django Settings
 
 
@@ -63,7 +66,7 @@ INSTALLED_APPS = [
 ]
 ```
 
-### Step4
+- Step4
 
 应用，建一个Event App，然后按地址排序
 
