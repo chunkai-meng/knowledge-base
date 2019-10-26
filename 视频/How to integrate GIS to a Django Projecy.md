@@ -70,6 +70,18 @@ INSTALLED_APPS = [
 
 应用，建一个Event App，然后按地址排序
 
+```shell
+./manage.py start app event
+```
+
+```python
+INSTALLED_APPS = [
+    # [...]
+    'django.contrib.gis',
+    'event',
+]
+```
+
 **Model**
 
 ```python
@@ -80,7 +92,7 @@ from django.contrib.gis.geos import Point
 
 class Event(BaseModel):
     name = models.CharField(max_length=100)
-    desciption = MartorField()    
+    desciption = models.TextField(blank=True)
     location = models.PointField()
     address = models.CharField(max_length=100)
 
@@ -112,3 +124,50 @@ $ python manage.py createsuperuser
 $ python manage.py runserver
 ```
 
+**View**
+```python
+from django.views import generic
+from django.contrib.gis.geos import fromstr
+from django.contrib.gis.db.models.functions import Distance
+from .models import Event
+
+longitude = -80.191788
+latitude = 25.761681
+user_location = Point(longitude, latitude, srid=4326)
+
+class Home(generic.ListView):
+    model = Event
+    context_object_name = 'Event'
+    queryset = Event.objects.annotate(distance=Distance('location',
+    user_location)
+    ).order_by('distance')[0:6]
+    template_name = 'event/index.html'
+```
+
+**Template**
+
+```html
+{% extends "admin/base_site.html" %}
+
+{% block content %}
+    {% if shops %}
+    <ul>
+    {% for shop in shops %}
+        <li>
+        {{ shop.name }}: {{shop.distance}}
+        </li>
+    {% endfor %}
+    </ul>
+    {% endif %}
+{% endblock %}
+```
+
+```python
+from django.urls import path
+from shops import views
+
+urlpatterns = [
+    # [...]
+    path('', views.ShopList.as_view())
+]
+```
