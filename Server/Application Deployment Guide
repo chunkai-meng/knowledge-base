@@ -1,0 +1,170 @@
+# System Deployment Guide
+
+## Prerequisites
+
+1. System Host
+2. Backend Project Repository
+
+## Deployment Steps
+
+### 1. Provision the Server Hardware
+
+- provide and new created or existing virtual server.(Hardware Team)
+- Provide the root access
+
+### 2. Install the Operating System
+
+- Install Ubuntu 24.04
+- Install Docker & Docker compose
+- Grant user permisson to docker user and docker group
+
+### 3. Configure Network Settings
+
+- Configure the internal IP and bind domain name
+- Ensure the access from office and via vpn
+- Ensure this server is accessable from public(if need)
+
+### 4. Install and Configure Essential Software
+
+- Install Docker & Docker compose
+- Grant user permisson to docker user and docker group
+- Install Git, Vim, install as less tools as possible
+- Make this server a pure docker host
+- Run `WatchTower` with docker on the server
+  - **Watchtower** automatically update running containers whenever a new image is available. It periodically checking for updates to the images used by your containers and can automatically pull the updates and restart the containers as necessary. This helps ensure that our applications are running the latest versions of their corresponding Docker images without manual intervention.
+- RUN `Nginx` with docker on this server:
+  - API Gateway
+  - Frontend code and static files host
+- RUN `Ftpd` with docker on this server:
+  - Upload frontend code currently
+
+### 5. Secure the Server
+
+- Set a strong root password and consider creating a separate administrative user account.
+- Configure the firewall to only allow necessary inbound and outbound traffic. (Hardware Team)
+- Install and configure a security monitoring and intrusion detection system, if applicable.(Hardware Team)
+- Install security updates.
+
+### 6. Deploy Steps
+
+#### 6.1 Deploy brand new Application to the Server
+
+Fistly, make sure the application is ready to deploy, and the application is running on the local machine successfully.
+Deploy the brand new application to the server, follow the same steps regardless of the environment.
+
+- Push the code to branch env/test
+- CICD build image with this branch
+- SSH to the test server
+  - Add the new image to the docker-compose.yml
+  - Run `docker-compose up -d` to start the new server
+  - Add new conf to nginx .conf file
+  - ADD new application's network to nginx network
+  - Restart the nginx
+  - Test the new application from the browser like `http://test.waicloud.co/api/admin` you should see the login page
+- Ftp the frontend code to the server (Frontend engineer will do this)
+- Test the frontend code from the browser like `http://test.waicloud.co` you should Application home page
+- Add application's network to the redis network, if this application use redis as cache
+- Add application's network to the celery network, if this application use celery as task queue
+
+#### 6.2 Deploy the fix or new feature update to the Server
+
+##### Deploy to Test environment
+
+- Push the code to branch env/test
+- CICD build image with this branch
+- Github Action server run the test in this Image
+- If test past, CICD push this image to Image registry
+- `WatchTower` monitor descover the new image then pull down and rebuild the related Software system image, then re-run this server
+- UPdate DB: Every time re-run the server, these a pre-process which is migrate DB which makes the Database schema update to the latest
+- After the server re-run, update complete
+
+##### Deploy to Production Environment
+
+- All issues are fixed and test
+- All issues in this mile stone are closed and code merged to master
+- Push master to staging and do regression test on staging
+- Push the code to branch env/prod
+- CICD build image with this branch
+- Github Action server run the test in this Image
+- If test past, CICD push this image to Image registry
+- `WatchTower` monitor descover the new image then pull down and rebuild the related Software system image, then re-run this server
+- UPdate DB: after server re-run, enter the docker container console, run migrate DB manually
+- After the server re-run, update complete
+
+Form a Release SOP, follow the checklist as below template.
+
+```md
+# Release Checklist
+
+Release at < date > 6pm NZST or later.
+
+## Testing
+
+- [ ] Push changes --> testing branches (`env/test`)
+- [ ] Test new features
+
+## Pre-release
+
+- [ ] agree master/feature is ready
+- [ ] set and check VERSION + Changelog (see appendix)
+- [ ] branch to < date > branch for release
+- [ ] push < date > --> env/staging
+- [ ] update .env and docker-compose.yml on env/staging (if applicable)
+- [ ] test env/staging for regressions
+- [ ] fix regressions on < date > and cherry-pick back to master
+
+## At release
+
+- [ ] push < date > --> env/prod
+- [ ] push new tag for env/prod HEAD (e.g. v2024-01-01)
+- [ ] login Prod Server
+- [ ] update .env and docker-compose.yml on env/prod (if applicable)
+- [ ] update container
+
+## Post-release
+
+- [ ] check if envs and other settings have taken effect (if applicable)
+- [ ] smoke test - quick check that the release succeeded.
+- [ ] Post release tasks relating to released features (if applicable)
+- [ ] Clean up completed issues in project
+
+## Announcement
+
+# Appendix
+
+## Changelog
+
+## < version >
+
+- List Changes #issue_id (if applicable)
+
+## Version
+
+< date > ([-1,2...] for hot fixes)~~
+```
+
+### 7. Test and Validate the Deployment
+
+**Test on Test Environment:**
+
+- Do integration testing
+- Test frontend function and style
+- Test third-paryt services
+- Test crontab service
+- Test message and notification
+
+**Test on Production Environment:**
+
+- Check Version Number and Change Log (already written in the CODE) shows in the Admin console.
+![alt text](image-1.png)
+- Smoke Test the frontend and admin
+- Update the team with new version deploied
+- Document the server's configuration in GitHub Relase Milestone, including network settings, installed software, and any custom configurations.
+- Provide the documentation to the appropriate team member.
+- Close the MileStone(GitHub)
+
+### Conclusion
+
+By following the steps outlined in this Server Deployment Guide, you should be able to successfully provision and configure a new server in your infrastructure. Remember to adapt the instructions as needed to fit your organization's specific requirements and best practices.
+
+If you have any questions or encounter issues during the deployment process, don't hesitate to contact me.
